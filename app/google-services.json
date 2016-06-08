@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "308788334687",
+    "firebase_url": "https://location-27d24.firebaseio.com",
+    "project_id": "location-27d24",
+    "storage_bucket": "location-27d24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308788334687:android:adedca6a3fecd8c7",
+        "android_client_info": {
+          "package_name": "ws.bilka.location"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308788334687-frfeiko1labsnd2musbttuu1lpfrinkb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh_-RrSkYzm5LKZErQyOd1b5k_IP7pHwY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
