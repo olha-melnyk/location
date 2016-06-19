@@ -2,8 +2,8 @@
     <string name="app_name">Location</string>
     <string name="action_settings">Settings</string>
 
-    <string name="friends">FRIENDS</string>
-    <string name="map">MAP</string>
+    <string name="friends">Users</string>
+    <string name="map">My current location coordinates</string>
     <string name="title_activity_friends">FriendsActivity</string>
     <string name="title_activity_maps">Map</string>
 

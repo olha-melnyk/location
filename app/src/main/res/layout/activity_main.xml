@@ -42,7 +42,7 @@
     <!--android:fitsSystemWindows="true"-->
     <!--tools:context="ws.bilka.iamhere.MainActivity">-->
 
-    <!--&lt;!&ndash;<include layout="@layout/activity_maps"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;<include layout="@layout/activity_location_coordinates"/>&ndash;&gt;-->
 
     <!--<android.support.design.widget.AppBarLayout-->
         <!--android:layout_width="match_parent"-->

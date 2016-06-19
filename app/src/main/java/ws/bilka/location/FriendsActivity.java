@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -33,6 +34,9 @@ public class FriendsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends);
 
+        mUserId = getIntent().getStringExtra("friends_uid");
+        Log.i(TAG, "UID_FRIEND: " + mUserId);
+
         mRef = new Firebase(Constants.FIREBASE_URL);
         if (mRef.getAuth() == null) {
             loadLoginView();
@@ -51,10 +55,14 @@ public class FriendsActivity extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(view.getContext(), UserLocation.class);
-                User user = mUsers.get(position);
-                intent.putExtra("user_id", user.getId());
-                startActivity(intent);
+                if(mUserId != null) {
+                    User user =  (User)mUserListAdapter.getItem(position);
+                    Intent intent = new Intent(view.getContext(), UserLocation.class);
+                    intent.putExtra("user_id", user.getId());
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(FriendsActivity.this, "No User ID", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -74,16 +82,15 @@ public class FriendsActivity extends Activity {
 
 
     private void loadUsers() {
-
         final Firebase firebase = new Firebase(Constants.FIREBASE_URL).child("users");
         firebase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot usersSnapshot) {
                 for (DataSnapshot userSnapshot : usersSnapshot.getChildren()) {
-                    Log.i(TAG, ">> " + userSnapshot);
                     User user = userSnapshot.getValue(User.class);
-                    firebase.child(userSnapshot.getKey()).setValue(user);
+                    user.setId(userSnapshot.getKey());
                     mUsers.add(user);
+                    Log.i(TAG, "mUserId " + user + " " + user.getId());
                 }
                 mUserListAdapter.update();
                 Log.i(TAG, "data changed " + usersSnapshot.getValue());

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -30,10 +31,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Firebase.setAndroidContext(this);
 
+        mUserId = getIntent().getStringExtra("my_uid");
+        Log.i(TAG, "User id: " + mUserId);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initTabs(savedInstanceState);
-
 
 
         mUsername = Constants.FIREBASE_URL + "/users/" + mUserId + "/location";
@@ -76,12 +79,16 @@ public class MainActivity extends AppCompatActivity {
 
         final TabHost.TabSpec tab1 = tabHost.newTabSpec(getString(R.string.friends));
         tab1.setIndicator(getString(R.string.friends));
-        tab1.setContent(new Intent(this, FriendsActivity.class));
+        Intent friendsIntent = new Intent(this, FriendsActivity.class);
+        friendsIntent.putExtra("friends_uid", mUserId);
+        tab1.setContent(friendsIntent);
         tabHost.addTab(tab1);
 
         final TabHost.TabSpec tab2 = tabHost.newTabSpec(getString(R.string.map));
         tab2.setIndicator(getString(R.string.map));
-        tab2.setContent(new Intent(MainActivity.this, MapsActivity.class));
+        Intent mapsIntent = new Intent(this, MapsActivity.class);
+        mapsIntent.putExtra("maps_uid", mUserId);
+        tab2.setContent(mapsIntent);
         tabHost.addTab(tab2);
     }
 
@@ -95,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_logout) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
             return true;
         }
 

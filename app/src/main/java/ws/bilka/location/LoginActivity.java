@@ -80,12 +80,12 @@ import java.util.Map;
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.putExtra("my_uid", authData.getUid());
                             startActivity(intent);
                         }
 
                         @Override
                         public void onAuthenticationError(FirebaseError firebaseError) {
-                            // Authenticated failed with error firebaseError
                             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                             builder.setMessage(firebaseError.getMessage())
                                     .setTitle(R.string.login_error_title)

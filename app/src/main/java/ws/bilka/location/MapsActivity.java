@@ -35,9 +35,10 @@ public class MapsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mUserId = getIntent().getStringExtra("user_id");
+        setContentView(R.layout.activity_location_coordinates);
 
-        setContentView(R.layout.activity_maps);
+        mUserId = getIntent().getStringExtra("maps_uid");
+        Log.i(TAG, "UID_MAP: " + mUserId);
 
         tvEnabledGPS = (TextView) findViewById(R.id.tvEnabledGPS);
         tvStatusGPS = (TextView) findViewById(R.id.tvStatusGPS);
@@ -115,11 +116,17 @@ public class MapsActivity extends Activity {
     }
 
     private String formatLocation(Location location) {
-        Firebase firebase = new Firebase(Constants.FIREBASE_URL + "/users/" + mUserId + "/name");
-        String myLat = String.valueOf(location.getLatitude());
-        String myLon  = String.valueOf(location.getLongitude());
-        firebase.child("Latitude").setValue(myLat);
-        firebase.child("Longitude").setValue(myLon);
+        Firebase firebase = new Firebase(Constants.FIREBASE_URL);
+        double myLat = location.getLatitude();
+        double myLon = location.getLongitude();
+
+        Log.i(TAG, "Coordinates: lat: " + myLat + " lon: " + myLon + " user id: " + mUserId);
+        if(mUserId != null) {
+            ws.bilka.location.Location loc = new ws.bilka.location.Location();
+            loc.setLatitude(myLat);
+            loc.setLongitude(myLon);
+            firebase.child("users").child(mUserId).child("location").setValue(loc);
+        }
 
         return String.format("Coordinates: lat = %1$.4f, lon = %2$.4f", location.getLatitude(), location.getLongitude());
     }
