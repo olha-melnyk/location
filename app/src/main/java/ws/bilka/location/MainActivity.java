@@ -104,10 +104,18 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_logout) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
+            onBackPressed();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        // super.onBackPressed(); // Comment this super call to avoid calling finish()
+    }
+
 }
 

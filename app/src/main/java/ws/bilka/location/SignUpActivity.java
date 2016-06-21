@@ -36,11 +36,10 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String password = passwordEditText.getText().toString();
                 String email = emailEditText.getText().toString();
-                String name  = nameEditText.getText().toString();
+                final String name  = nameEditText.getText().toString().trim();
 
                 password = password.trim();
                 email = email.trim();
-                name = name.trim();
 
                 if (password.isEmpty() || email.isEmpty() || name.isEmpty()) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
@@ -61,6 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                                            intent.putExtra("username", name);
                                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(intent);

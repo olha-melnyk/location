@@ -8,7 +8,8 @@
     <TextView
         android:id="@+id/tv_location"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"/>
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/map"

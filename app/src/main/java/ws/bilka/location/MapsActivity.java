@@ -128,7 +128,7 @@ public class MapsActivity extends Activity {
             firebase.child("users").child(mUserId).child("location").setValue(loc);
         }
 
-        return String.format("Coordinates: lat = %1$.4f, lon = %2$.4f", location.getLatitude(), location.getLongitude());
+        return String.format("Coordinates: \n Latitude = %1$.6f,\n Longitude = %2$.6f", location.getLatitude(), location.getLongitude());
     }
 
     private void checkEnabled() {

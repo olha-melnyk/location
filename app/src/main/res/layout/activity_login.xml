@@ -34,22 +34,13 @@
             android:hint="@string/password_hint"
             android:inputType="textPassword" />
 
-        <EditText
-            android:id="@+id/nameField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/passwordField"
-            android:layout_below="@+id/passwordField"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="@string/name_text" />
 
         <Button
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/nameField"
-            android:layout_below="@+id/nameField"
+            android:layout_alignLeft="@+id/passwordField"
+            android:layout_below="@+id/passwordField"
             android:text="@string/login_button_label" />
 
         <TextView

@@ -18,6 +18,7 @@
             android:id="@+id/tvTitleGPS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="@string/provider_gps"
             android:textSize="20sp">
         </TextView>
@@ -31,12 +32,14 @@
             android:id="@+id/tvStatusGPS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:textSize="17sp">
         </TextView>
         <TextView
             android:id="@+id/tvLocationGPS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:textSize="17sp">
         </TextView>
         <TextView
@@ -44,6 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:textColor="@color/black"
             android:text="@string/provider_network"
             android:textSize="20sp">
         </TextView>
@@ -51,18 +55,21 @@
             android:id="@+id/tvEnabledNet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:textSize="17sp">
         </TextView>
         <TextView
             android:id="@+id/tvStatusNet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:textSize="17sp">
         </TextView>
         <TextView
             android:id="@+id/tvLocationNet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:textSize="17sp">
         </TextView>
 
@@ -72,6 +79,7 @@
             <Button
                 android:id="@+id/btnLocationSettings"
                 android:layout_alignParentBottom="true"
+                android:background="@color/blue"
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

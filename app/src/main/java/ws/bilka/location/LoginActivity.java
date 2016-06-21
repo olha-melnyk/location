@@ -20,7 +20,7 @@ import java.util.Map;
 
     protected EditText emailEditText;
     protected EditText passwordEditText;
-    protected EditText nameEditText;
+    protected String nameText;
     protected Button loginButton;
     protected TextView signUpTextView;
 
@@ -29,10 +29,12 @@ import java.util.Map;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        nameText = getIntent().getStringExtra("username");
+
         signUpTextView = (TextView)findViewById(R.id.signUpText);
         emailEditText = (EditText)findViewById(R.id.emailField);
         passwordEditText = (EditText)findViewById(R.id.passwordField);
-        nameEditText = (EditText)findViewById(R.id.nameField);
+
         loginButton = (Button)findViewById(R.id.loginButton);
 
         final Firebase ref = new Firebase(Constants.FIREBASE_URL);
@@ -50,13 +52,11 @@ import java.util.Map;
             public void onClick(View v) {
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
-                String name = nameEditText.getText().toString();
 
                 email = email.trim();
                 password = password.trim();
-                name = name.trim();
 
-                if (email.isEmpty() || password.isEmpty() || name.isEmpty()) {
+                if (email.isEmpty() || password.isEmpty()) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                     builder.setMessage(R.string.login_error_message)
                             .setTitle(R.string.login_error_title)
@@ -65,7 +65,6 @@ import java.util.Map;
                     dialog.show();
                 } else {
                     final String emailAddress = email;
-                    final String userName = name;
 
                     //Login with an email/password combination
                     ref.authWithPassword(email, password, new Firebase.AuthResultHandler() {
@@ -74,8 +73,7 @@ import java.util.Map;
                             // Authenticated successfully with payload authData
                             Map<String, Object> map = new HashMap<String, Object>();
                             map.put("email", emailAddress);
-                            map.put("name", userName);
-                            ref.child("users").child(authData.getUid()).setValue(map);
+                            ref.child("users").child(authData.getUid());
 
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
